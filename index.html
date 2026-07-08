@@ -6,7 +6,7 @@
 <title>СПЕЦМАЗЬ — Народные средства от заложенности носа и насморка</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Golos+Text:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream:#faf3e3;
@@ -25,8 +25,8 @@
     --line:#e6d9bc;
     --shadow:0 10px 30px rgba(90,60,20,.12);
     --radius:22px;
-    --font-display:"Unbounded",system-ui,sans-serif;
-    --font-body:"Manrope",system-ui,sans-serif;
+    --font-display:"Russo One",system-ui,sans-serif;
+    --font-body:"Golos Text",system-ui,sans-serif;
     font-size:16px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -107,21 +107,12 @@
     border-bottom:1px solid var(--line);
     animation:fadeUp .6s ease both;
   }
-  .nav{display:flex;align-items:center;gap:36px;height:76px}
-  .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-  .logo-badge{
-    width:46px;height:46px;border-radius:50%;
-    overflow:hidden;flex:0 0 auto;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 10px rgba(163,22,33,.35);
-    transition:transform .3s;
-  }
-  .logo-badge img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-  .logo:hover .logo-badge{animation:spinPop .5s ease}
-  .logo-name{
-    font-family:var(--font-display);
-    font-size:21px;font-weight:900;letter-spacing:.5px;color:var(--red);
-    text-transform:uppercase;text-shadow:0 1px 0 #fff;
+  .nav{display:flex;align-items:center;gap:36px;height:120px}
+  .logo{display:flex;align-items:center;text-decoration:none;transition:transform .3s}
+  .logo:hover{transform:scale(1.02)}
+  .logo-img{
+    height:96px;width:auto;object-fit:contain;
+    filter:drop-shadow(0 6px 14px rgba(163,22,33,.25));
   }
   nav.menu{display:flex;gap:30px;margin-left:8px}
   nav.menu a{
@@ -163,8 +154,8 @@
   }
   .hero h1{
     font-family:var(--font-display);
-    font-size:clamp(26px,3.1vw,42px);line-height:1.14;font-weight:900;
-    text-transform:uppercase;letter-spacing:0;
+    font-size:clamp(26px,3.1vw,42px);line-height:1.16;font-weight:400;
+    text-transform:uppercase;letter-spacing:.3px;
     animation:fadeUp .8s cubic-bezier(.22,.61,.36,1) both;
   }
   .hero h1 .accent{color:var(--red)}
@@ -204,8 +195,8 @@
   .remedies{padding:72px 0 40px}
   .section-title{
     font-family:var(--font-display);
-    text-align:center;font-size:clamp(22px,2.4vw,32px);font-weight:900;
-    text-transform:uppercase;letter-spacing:.3px;margin-bottom:44px;
+    text-align:center;font-size:clamp(22px,2.4vw,32px);font-weight:400;
+    text-transform:uppercase;letter-spacing:.4px;margin-bottom:44px;
   }
   .section-title em{font-style:normal;color:var(--red)}
   .grid{
@@ -225,12 +216,12 @@
     font-family:var(--font-display);
     width:44px;height:44px;border-radius:50%;flex:0 0 auto;
     background:#fff;display:flex;align-items:center;justify-content:center;
-    font-size:19px;font-weight:900;
+    font-size:19px;font-weight:400;
     box-shadow:inset 0 0 0 3px rgba(0,0,0,.12);
     transition:transform .3s;
   }
   .card:hover .card-num{animation:spinPop .5s ease}
-  .card-head h3{font-family:var(--font-display);font-size:14.5px;font-weight:700;text-transform:uppercase;line-height:1.25;letter-spacing:.2px}
+  .card-head h3{font-family:var(--font-display);font-size:14px;font-weight:400;text-transform:uppercase;line-height:1.3;letter-spacing:.3px}
   .c-green{background:linear-gradient(180deg,#57903a,var(--green-dark))}
   .c-green .card-num{color:var(--green-dark)}
   .c-orange{background:linear-gradient(180deg,#ef8c2b,#c96812)}
@@ -264,8 +255,8 @@
   }
   .benefits-box h2{
     font-family:var(--font-display);
-    font-size:19px;font-weight:900;text-transform:uppercase;color:var(--green-dark);
-    line-height:1.25;margin-bottom:14px;letter-spacing:.2px;
+    font-size:18px;font-weight:400;text-transform:uppercase;color:var(--green-dark);
+    line-height:1.3;margin-bottom:14px;letter-spacing:.3px;
   }
   .benefits-box .lead p{font-size:15px;color:var(--ink-soft);font-weight:600}
   .benefit{
@@ -280,7 +271,7 @@
     transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s;
   }
   .benefit:hover .b-icon{transform:translateY(-6px) scale(1.08);box-shadow:0 12px 24px rgba(90,60,20,.18)}
-  .benefit h4{font-family:var(--font-display);font-size:13.5px;font-weight:700;text-transform:uppercase;letter-spacing:.2px;margin-bottom:8px}
+  .benefit h4{font-family:var(--font-display);font-size:13px;font-weight:400;text-transform:uppercase;letter-spacing:.3px;margin-bottom:8px}
   .benefit h4.g{color:var(--green-dark)} .benefit h4.gr{color:var(--green)} .benefit h4.r{color:var(--red)}
   .benefit p{font-size:14px;color:var(--ink-soft);font-weight:600}
   .disclaimer{
@@ -311,7 +302,7 @@
     border:2px solid rgba(255,255,255,.5);
     animation:floaty 3.6s ease-in-out infinite;
   }
-  .cta-band p{font-family:var(--font-display);color:#fff;font-weight:700;text-transform:uppercase;font-size:clamp(14px,1.3vw,17px);letter-spacing:.3px;flex:1;min-width:240px}
+  .cta-band p{font-family:var(--font-display);color:#fff;font-weight:400;text-transform:uppercase;font-size:clamp(14px,1.3vw,17px);letter-spacing:.4px;flex:1;min-width:240px}
   .cta-btn{
     display:inline-flex;align-items:center;gap:10px;
     background:linear-gradient(180deg,#5a8f3b,var(--green-dark));
@@ -336,7 +327,8 @@
   .footer-grid{
     display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center;
   }
-  .footer-brand p{font-size:14px;color:var(--ink-soft);font-weight:600;margin-top:10px;max-width:230px}
+  .footer-brand .logo-img{height:84px}
+  .footer-brand p{font-size:14px;color:var(--ink-soft);font-weight:600;margin-top:14px;max-width:280px}
   .footer-menu{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
   .footer-menu a{text-decoration:none;color:var(--ink);font-weight:700;font-size:15px;transition:.2s}
   .footer-menu a:hover{color:var(--red);transform:translateY(-1px)}
@@ -360,10 +352,12 @@
     .benefits-box{grid-template-columns:1fr 1fr}
     .benefits-box .lead{grid-column:1/-1}
     .benefit{border-left:none;border-top:2px dashed var(--line);padding-top:22px}
+    .logo-img{height:76px}
+    .nav{height:100px}
   }
   @media (max-width:860px){
     nav.menu{
-      display:none;position:absolute;top:76px;left:0;right:0;
+      display:none;position:absolute;top:100%;left:0;right:0;
       background:var(--cream);border-bottom:2px solid var(--line);
       flex-direction:column;gap:0;padding:8px 0;
       box-shadow:0 16px 30px rgba(90,60,20,.15);
@@ -377,12 +371,15 @@
   }
   @media (max-width:640px){
     .wrap{padding:0 20px}
+    .nav{height:84px}
+    .logo-img{height:60px}
     .grid{grid-template-columns:1fr}
     .benefits-box{grid-template-columns:1fr;padding:28px 22px}
     .cta-band{padding:24px;justify-content:center;text-align:center}
     .cta-band p{min-width:0}
     .footer-grid{grid-template-columns:1fr;text-align:center;gap:28px}
-    .footer-brand p{margin:10px auto 0}
+    .footer-brand p{margin:14px auto 0}
+    .footer-brand .logo{justify-content:center}
     .socials-title{text-align:center}
     .socials{justify-content:center}
     .hero-badge{font-size:12px;padding:12px 18px}
@@ -395,8 +392,7 @@
 <header>
   <div class="wrap nav">
     <a href="#" class="logo">
-      <span class="logo-badge"><img src="https://rrzvgzjttmyseqsmmyvn.supabase.co/storage/v1/object/sign/attachments/96bf55b9-44ce-4c2b-a96a-a3baeb904042/canvas/g01k4g1q/3j8sanwl.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xMjY1MWQ4My04ODE0LTQ3NzMtOGRlNS00MzliNDBkODY2NmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdHRhY2htZW50cy85NmJmNTViOS00NGNlLTRjMmItYTk2YS1hM2JhZWI5MDQwNDIvY2FudmFzL2cwMWs0ZzFxLzNqOHNhbndsLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODM0ODcxMzksImV4cCI6MjA5ODg0NzEzOX0.qDnjsi0FgUDKfCpjL_EQvsEkNfLO7qtsOkypb0r7xhQ" alt="Логотип Спецмазь"></span>
-      <span class="logo-name">Спецмазь</span>
+      <img class="logo-img" src="https://rrzvgzjttmyseqsmmyvn.supabase.co/storage/v1/object/sign/attachments/e2e31af3-9866-4e27-b24c-d1ac7d94af85/canvas/ymqp1uje/bc2l9x29.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xMjY1MWQ4My04ODE0LTQ3NzMtOGRlNS00MzliNDBkODY2NmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdHRhY2htZW50cy9lMmUzMWFmMy05ODY2LTRlMjctYjI0Yy1kMWFjN2Q5NGFmODUvY2FudmFzL3ltcXAxdWplL2JjMmw5eDI5LnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODM0OTM0NDIsImV4cCI6MjA5ODg1MzQ0Mn0.Ywh4m-dxAtf_Le3_0kTPHdRkJ1mEOkedSvYGBfpM-Pk" alt="Логотип СПЕЦМАЗЬ">
     </a>
     <nav class="menu" id="menu">
       <a href="#">Главная</a>
@@ -570,8 +566,7 @@
     <div class="footer-grid reveal">
       <div class="footer-brand">
         <a href="#" class="logo">
-          <span class="logo-badge"><img src="https://rrzvgzjttmyseqsmmyvn.supabase.co/storage/v1/object/sign/attachments/96bf55b9-44ce-4c2b-a96a-a3baeb904042/canvas/g01k4g1q/3j8sanwl.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xMjY1MWQ4My04ODE0LTQ3NzMtOGRlNS00MzliNDBkODY2NmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdHRhY2htZW50cy85NmJmNTViOS00NGNlLTRjMmItYTk2YS1hM2JhZWI5MDQwNDIvY2FudmFzL2cwMWs0ZzFxLzNqOHNhbndsLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODM0ODcxMzksImV4cCI6MjA5ODg0NzEzOX0.qDnjsi0FgUDKfCpjL_EQvsEkNfLO7qtsOkypb0r7xhQ" alt="Логотип Спецмазь"></span>
-          <span class="logo-name">Спецмазь</span>
+          <img class="logo-img" src="https://rrzvgzjttmyseqsmmyvn.supabase.co/storage/v1/object/sign/attachments/e2e31af3-9866-4e27-b24c-d1ac7d94af85/canvas/ymqp1uje/bc2l9x29.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xMjY1MWQ4My04ODE0LTQ3NzMtOGRlNS00MzliNDBkODY2NmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdHRhY2htZW50cy9lMmUzMWFmMy05ODY2LTRlMjctYjI0Yy1kMWFjN2Q5NGFmODUvY2FudmFzL3ltcXAxdWplL2JjMmw5eDI5LnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODM0OTM0NDIsImV4cCI6MjA5ODg1MzQ0Mn0.Ywh4m-dxAtf_Le3_0kTPHdRkJ1mEOkedSvYGBfpM-Pk" alt="Логотип СПЕЦМАЗЬ">
         </a>
         <p>Народные средства для здоровья в домашних условиях</p>
       </div>
