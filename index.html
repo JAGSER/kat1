@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>СПЕЦМАЗЬ — Народные средства от заложенности носа и насморка</title>
+<style>
+  :root{
+    --cream:#faf3e3;
+    --cream-2:#f5ecd7;
+    --card:#fffaf0;
+    --red:#a31621;
+    --red-dark:#7e0f18;
+    --green:#4a7c2f;
+    --green-dark:#375f21;
+    --orange:#e07b1f;
+    --blue:#1f4e8c;
+    --purple:#7b2d8b;
+    --teal:#0e7d7d;
+    --ink:#2b2117;
+    --ink-soft:#5c5142;
+    --line:#e6d9bc;
+    --shadow:0 10px 30px rgba(90,60,20,.12);
+    --radius:22px;
+    font-size:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  html,body{width:100%;overflow-x:hidden}
+  body{
+    font-family:"Arial Narrow","PT Sans Narrow",Arial,Helvetica,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.45;
+  }
+  img{display:block;max-width:100%}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+
+  /* ===== KEYFRAMES ===== */
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(28px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  @keyframes slideInRight{
+    from{opacity:0;transform:translateX(60px) scale(.96)}
+    to{opacity:1;transform:translateX(0) scale(1)}
+  }
+  @keyframes floaty{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+  }
+  @keyframes badgePulse{
+    0%,100%{transform:scale(1);box-shadow:0 8px 20px rgba(163,22,33,.3)}
+    50%{transform:scale(1.03);box-shadow:0 12px 28px rgba(163,22,33,.45)}
+  }
+  @keyframes wiggle{
+    0%,100%{transform:rotate(0)}
+    25%{transform:rotate(-8deg)}
+    75%{transform:rotate(8deg)}
+  }
+  @keyframes spinPop{
+    0%{transform:scale(1) rotate(0)}
+    50%{transform:scale(1.15) rotate(10deg)}
+    100%{transform:scale(1) rotate(0)}
+  }
+  @keyframes shine{
+    from{left:-80%}
+    to{left:130%}
+  }
+  @keyframes bgShift{
+    0%,100%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+  }
+  @keyframes bob{
+    0%,100%{transform:translateY(0) rotate(-4deg)}
+    50%{transform:translateY(-6px) rotate(4deg)}
+  }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal{
+    opacity:0;transform:translateY(34px);
+    transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+  }
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .reveal.d1{transition-delay:.08s}
+  .reveal.d2{transition-delay:.16s}
+  .reveal.d3{transition-delay:.24s}
+  .reveal.d4{transition-delay:.32s}
+  .reveal.d5{transition-delay:.4s}
+  .reveal.d6{transition-delay:.48s}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important}
+    .reveal{opacity:1;transform:none}
+  }
+
+  /* ===== HEADER ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,243,227,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    animation:fadeUp .6s ease both;
+  }
+  .nav{display:flex;align-items:center;gap:36px;height:76px}
+  .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .logo-badge{
+    width:46px;height:46px;border-radius:50%;
+    overflow:hidden;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 10px rgba(163,22,33,.35);
+    transition:transform .3s;
+  }
+  .logo-badge img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+  .logo:hover .logo-badge{animation:spinPop .5s ease}
+  .logo-name{
+    font-size:26px;font-weight:900;letter-spacing:1px;color:var(--red);
+    text-transform:uppercase;text-shadow:0 1px 0 #fff;
+  }
+  nav.menu{display:flex;gap:30px;margin-left:8px}
+  nav.menu a{
+    text-decoration:none;color:var(--ink);font-weight:700;font-size:16px;
+    padding:6px 2px;position:relative;transition:.2s;
+  }
+  nav.menu a::after{
+    content:"";position:absolute;left:0;bottom:0;height:3px;width:0;
+    background:var(--red);border-radius:2px;transition:width .3s cubic-bezier(.22,.61,.36,1);
+  }
+  nav.menu a:hover{color:var(--red)}
+  nav.menu a:hover::after{width:100%}
+  nav.menu a.active{color:var(--red)}
+  nav.menu a.active::after{width:100%}
+  .header-cta{
+    margin-left:auto;display:inline-flex;align-items:center;gap:8px;
+    background:linear-gradient(180deg,#5a8f3b,var(--green-dark));
+    color:#fff;text-decoration:none;font-weight:800;font-size:15px;
+    padding:12px 22px;border-radius:999px;
+    box-shadow:0 6px 16px rgba(55,95,33,.35);transition:.25s;
+    position:relative;overflow:hidden;
+  }
+  .header-cta:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 10px 24px rgba(55,95,33,.45)}
+  .burger{display:none;margin-left:auto;background:none;border:none;cursor:pointer;padding:8px}
+  .burger span{display:block;width:26px;height:3px;background:var(--red);margin:5px 0;border-radius:2px;transition:.3s}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    background:linear-gradient(105deg,var(--cream) 0%,var(--cream) 40%,#f0e4c8 70%,#f7ecd2 100%);
+    background-size:200% 200%;
+    animation:bgShift 14s ease-in-out infinite;
+    border-bottom:2px solid var(--line);
+    overflow:hidden;
+  }
+  .hero-inner{
+    display:grid;grid-template-columns:1.05fr 1fr;gap:40px;
+    align-items:center;padding:56px 0 48px;
+  }
+  .hero h1{
+    font-size:clamp(34px,4.2vw,58px);line-height:1.04;font-weight:900;
+    text-transform:uppercase;letter-spacing:.5px;
+    animation:fadeUp .8s cubic-bezier(.22,.61,.36,1) both;
+  }
+  .hero h1 .accent{color:var(--red)}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:12px;
+    background:linear-gradient(180deg,#c22733,var(--red));
+    color:#fff;font-weight:800;font-size:15px;letter-spacing:.5px;
+    padding:14px 24px;border-radius:14px;margin-top:28px;
+    box-shadow:0 8px 20px rgba(163,22,33,.3);text-transform:uppercase;
+    animation:fadeUp .8s .15s cubic-bezier(.22,.61,.36,1) both, badgePulse 3.2s 1.2s ease-in-out infinite;
+  }
+  .hero-points{display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:26px;animation:fadeUp .8s .3s cubic-bezier(.22,.61,.36,1) both}
+  .hero-point{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--green-dark);text-transform:uppercase;font-size:15px;letter-spacing:.5px}
+  .hero-point .dot{
+    width:36px;height:36px;border-radius:50%;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;font-size:17px;
+    background:#fff;box-shadow:0 3px 8px rgba(90,60,20,.15);
+    transition:transform .3s;
+  }
+  .hero-point:hover .dot{animation:wiggle .5s ease}
+  .hero-note{
+    margin-top:30px;padding-top:22px;border-top:2px dashed var(--line);
+    display:flex;align-items:center;gap:12px;
+    font-weight:800;text-transform:uppercase;letter-spacing:.5px;font-size:16px;
+    animation:fadeUp .8s .45s cubic-bezier(.22,.61,.36,1) both;
+  }
+  .hero-img{
+    position:relative;border-radius:28px;overflow:hidden;
+    box-shadow:var(--shadow);aspect-ratio:4/3.4;
+    background:#e9dcc0;
+    animation:slideInRight .9s .2s cubic-bezier(.22,.61,.36,1) both, floaty 6s 1.3s ease-in-out infinite;
+  }
+  .hero-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+  .hero-img:hover img{transform:scale(1.05)}
+
+  /* ===== REMEDIES ===== */
+  .remedies{padding:72px 0 40px}
+  .section-title{
+    text-align:center;font-size:clamp(26px,3vw,40px);font-weight:900;
+    text-transform:uppercase;letter-spacing:1px;margin-bottom:44px;
+  }
+  .section-title em{font-style:normal;color:var(--red)}
+  .grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
+  }
+  .card{
+    background:var(--card);border-radius:var(--radius);overflow:hidden;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;
+    transition:transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s;
+  }
+  .card:hover{transform:translateY(-8px) scale(1.015);box-shadow:0 22px 46px rgba(90,60,20,.2)}
+  .card-head{
+    display:flex;align-items:center;gap:14px;padding:16px 20px;color:#fff;
+    min-height:78px;
+  }
+  .card-num{
+    width:44px;height:44px;border-radius:50%;flex:0 0 auto;
+    background:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:22px;font-weight:900;
+    box-shadow:inset 0 0 0 3px rgba(0,0,0,.12);
+    transition:transform .3s;
+  }
+  .card:hover .card-num{animation:spinPop .5s ease}
+  .card-head h3{font-size:18px;font-weight:900;text-transform:uppercase;line-height:1.15;letter-spacing:.4px}
+  .c-green{background:linear-gradient(180deg,#57903a,var(--green-dark))}
+  .c-green .card-num{color:var(--green-dark)}
+  .c-orange{background:linear-gradient(180deg,#ef8c2b,#c96812)}
+  .c-orange .card-num{color:#c96812}
+  .c-red{background:linear-gradient(180deg,#c22733,var(--red-dark))}
+  .c-red .card-num{color:var(--red)}
+  .c-blue{background:linear-gradient(180deg,#2b62a8,#173d6f)}
+  .c-blue .card-num{color:var(--blue)}
+  .c-purple{background:linear-gradient(180deg,#9440a5,#611f6f)}
+  .c-purple .card-num{color:var(--purple)}
+  .c-teal{background:linear-gradient(180deg,#159595,#0a6161)}
+  .c-teal .card-num{color:var(--teal)}
+  .card-img{aspect-ratio:1/1;overflow:hidden;background:#efe6cf}
+  .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .55s cubic-bezier(.22,.61,.36,1)}
+  .card:hover .card-img img{transform:scale(1.07)}
+  .card-body{display:flex;gap:14px;padding:20px;align-items:flex-start}
+  .card-icon{
+    width:48px;height:48px;border-radius:50%;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;font-size:22px;
+    border:2px solid var(--line);background:#fff;transition:transform .3s;
+  }
+  .card:hover .card-icon{animation:bob 1.6s ease-in-out infinite}
+  .card-body p{font-size:15.5px;color:var(--ink);font-weight:600;line-height:1.5}
+
+  /* ===== BENEFITS ===== */
+  .benefits{padding:36px 0 24px}
+  .benefits-box{
+    background:var(--cream-2);border:1px solid var(--line);border-radius:26px;
+    padding:40px;display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:32px;
+    box-shadow:var(--shadow);
+  }
+  .benefits-box h2{
+    font-size:24px;font-weight:900;text-transform:uppercase;color:var(--green-dark);
+    line-height:1.15;margin-bottom:14px;letter-spacing:.5px;
+  }
+  .benefits-box .lead p{font-size:15.5px;color:var(--ink-soft);font-weight:600}
+  .benefit{
+    text-align:center;padding:0 8px;
+    border-left:2px dashed var(--line);
+  }
+  .benefit .b-icon{
+    width:78px;height:78px;border-radius:50%;margin:0 auto 16px;
+    background:#fff;border:2px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-size:34px;
+    box-shadow:0 4px 12px rgba(90,60,20,.1);
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s;
+  }
+  .benefit:hover .b-icon{transform:translateY(-6px) scale(1.08);box-shadow:0 12px 24px rgba(90,60,20,.18)}
+  .benefit h4{font-size:17px;font-weight:900;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px}
+  .benefit h4.g{color:var(--green-dark)} .benefit h4.gr{color:var(--green)} .benefit h4.r{color:var(--red)}
+  .benefit p{font-size:14.5px;color:var(--ink-soft);font-weight:600}
+  .disclaimer{
+    text-align:center;font-size:12.5px;color:#9a8d75;margin-top:22px;font-weight:600;
+  }
+
+  /* ===== CTA ===== */
+  .cta{padding:28px 0 64px}
+  .cta-band{
+    background:linear-gradient(105deg,#c22733,var(--red-dark),#c22733);
+    background-size:200% 200%;
+    animation:bgShift 8s ease-in-out infinite;
+    border-radius:26px;padding:28px 36px;
+    display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+    box-shadow:0 14px 34px rgba(126,15,24,.35);
+    position:relative;overflow:hidden;
+  }
+  .cta-band::before{
+    content:"";position:absolute;top:0;bottom:0;left:-80%;width:45%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.16),transparent);
+    transform:skewX(-18deg);
+    animation:shine 4.5s 1s ease-in-out infinite;
+    pointer-events:none;
+  }
+  .cta-band .shield{
+    width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.15);
+    display:flex;align-items:center;justify-content:center;font-size:24px;flex:0 0 auto;
+    border:2px solid rgba(255,255,255,.5);
+    animation:floaty 3.6s ease-in-out infinite;
+  }
+  .cta-band p{color:#fff;font-weight:900;text-transform:uppercase;font-size:clamp(16px,1.6vw,20px);letter-spacing:.6px;flex:1;min-width:240px}
+  .cta-btn{
+    display:inline-flex;align-items:center;gap:10px;
+    background:linear-gradient(180deg,#5a8f3b,var(--green-dark));
+    color:#fff;text-decoration:none;font-weight:900;text-transform:uppercase;
+    font-size:16px;padding:16px 30px;border-radius:999px;letter-spacing:.5px;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);transition:.25s;white-space:nowrap;
+    position:relative;overflow:hidden;
+  }
+  .cta-btn::before{
+    content:"";position:absolute;top:0;bottom:0;left:-80%;width:40%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
+    transform:skewX(-18deg);transition:left .6s ease;
+  }
+  .cta-btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 12px 28px rgba(0,0,0,.32)}
+  .cta-btn:hover::before{left:130%}
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--cream-2);border-top:2px solid var(--line);
+    padding:44px 0 28px;
+  }
+  .footer-grid{
+    display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center;
+  }
+  .footer-brand p{font-size:14px;color:var(--ink-soft);font-weight:600;margin-top:10px;max-width:230px}
+  .footer-menu{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
+  .footer-menu a{text-decoration:none;color:var(--ink);font-weight:700;font-size:15px;transition:.2s}
+  .footer-menu a:hover{color:var(--red);transform:translateY(-1px)}
+  .socials-title{font-weight:800;font-size:15px;margin-bottom:12px;text-align:right}
+  .socials{display:flex;gap:12px;justify-content:flex-end}
+  .soc{
+    width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    color:#fff;text-decoration:none;font-weight:900;font-size:15px;
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+  }
+  .soc:hover{transform:translateY(-5px) rotate(-4deg);box-shadow:0 10px 20px rgba(0,0,0,.2)}
+  .soc.vk{background:#0077ff}.soc.ok{background:#f97400}.soc.yt{background:#ff0000}
+  .copyright{
+    text-align:center;margin-top:34px;padding-top:22px;border-top:1px solid var(--line);
+    font-size:13.5px;color:#9a8d75;font-weight:600;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:1024px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .benefits-box{grid-template-columns:1fr 1fr}
+    .benefits-box .lead{grid-column:1/-1}
+    .benefit{border-left:none;border-top:2px dashed var(--line);padding-top:22px}
+  }
+  @media (max-width:860px){
+    nav.menu{
+      display:none;position:absolute;top:76px;left:0;right:0;
+      background:var(--cream);border-bottom:2px solid var(--line);
+      flex-direction:column;gap:0;padding:8px 0;
+      box-shadow:0 16px 30px rgba(90,60,20,.15);
+    }
+    nav.menu.open{display:flex;animation:fadeUp .35s ease both}
+    nav.menu a{padding:14px 32px;border-bottom:1px solid var(--line)}
+    .header-cta{display:none}
+    .burger{display:block}
+    .hero-inner{grid-template-columns:1fr;padding:40px 0}
+    .hero-img{order:-1;aspect-ratio:16/11}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 20px}
+    .grid{grid-template-columns:1fr}
+    .benefits-box{grid-template-columns:1fr;padding:28px 22px}
+    .cta-band{padding:24px;justify-content:center;text-align:center}
+    .cta-band p{min-width:0}
+    .footer-grid{grid-template-columns:1fr;text-align:center;gap:28px}
+    .footer-brand p{margin:10px auto 0}
+    .socials-title{text-align:center}
+    .socials{justify-content:center}
+    .hero-badge{font-size:13px;padding:12px 18px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">
+      <span class="logo-badge"><img src="https://rrzvgzjttmyseqsmmyvn.supabase.co/storage/v1/object/sign/attachments/96bf55b9-44ce-4c2b-a96a-a3baeb904042/canvas/g01k4g1q/3j8sanwl.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xMjY1MWQ4My04ODE0LTQ3NzMtOGRlNS00MzliNDBkODY2NmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdHRhY2htZW50cy85NmJmNTViOS00NGNlLTRjMmItYTk2YS1hM2JhZWI5MDQwNDIvY2FudmFzL2cwMWs0ZzFxLzNqOHNhbndsLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODM0ODcxMzksImV4cCI6MjA5ODg0NzEzOX0.qDnjsi0FgUDKfCpjL_EQvsEkNfLO7qtsOkypb0r7xhQ" alt="Логотип Спецмазь"></span>
+      <span class="logo-name">Спецмазь</span>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#">Главная</a>
+      <a href="#remedies" class="active">Средства</a>
+      <a href="#benefits">О нас</a>
+      <a href="#remedies">Советы</a>
+      <a href="#footer">Отзывы</a>
+    </nav>
+    <a href="#cta" class="header-cta">🌿 Здоровье</a>
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <h1><span class="accent">Народные средства</span><br>от заложенности носа<br>и насморка</h1>
+      <div class="hero-badge">🛡️ Проверено временем. Работает на практике!</div>
+      <div class="hero-points">
+        <div class="hero-point"><span class="dot">🌿</span> Натурально</div>
+        <div class="hero-point"><span class="dot">🔓</span> Доступно</div>
+        <div class="hero-point"><span class="dot">👍</span> Эффективно</div>
+      </div>
+      <div class="hero-note">🍃 Забота о здоровье — в домашних условиях!</div>
+    </div>
+    <div class="hero-img">
+      <img src="https://rrzvgzjttmyseqsmmyvn.supabase.co/storage/v1/object/sign/attachments/941a914d-ae13-44df-8f11-8d512d6c51bf/canvas-images/1783483423767-s9wru4.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xMjY1MWQ4My04ODE0LTQ3NzMtOGRlNS00MzliNDBkODY2NmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdHRhY2htZW50cy85NDFhOTE0ZC1hZTEzLTQ0ZGYtOGYxMS04ZDUxMmQ2YzUxYmYvY2FudmFzLWltYWdlcy8xNzgzNDgzNDIzNzY3LXM5d3J1NC53ZWJwIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4MzQ4MzQyNCwiZXhwIjoyMDk4ODQzNDI0fQ.59I5cJjoU2DGuHKy5uWzSuNaxHUfXdrhJO2-M9hYY58" alt="Кот промывает нос солевым раствором">
+    </div>
+  </div>
+</section>
+
+<!-- ===== REMEDIES ===== -->
+<section class="remedies" id="remedies">
+  <div class="wrap">
+    <h2 class="section-title reveal"><em>6 проверенных</em> народных средств</h2>
+    <div class="grid">
+
+      <article class="card reveal d1">
+        <div class="card-head c-green">
+          <span class="card-num">1</span>
+          <h3>Промывание солевым раствором с содой</h3>
+        </div>
+        <div class="card-img">
+          <img src="https://rrzvgzjttmyseqsmmyvn.supabase.co/storage/v1/object/sign/attachments/941a914d-ae13-44df-8f11-8d512d6c51bf/canvas-images/1783483421201-8f9ik9.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xMjY1MWQ4My04ODE0LTQ3NzMtOGRlNS00MzliNDBkODY2NmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdHRhY2htZW50cy85NDFhOTE0ZC1hZTEzLTQ0ZGYtOGYxMS04ZDUxMmQ2YzUxYmYvY2FudmFzLWltYWdlcy8xNzgzNDgzNDIxMjAxLThmOWlrOS53ZWJwIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4MzQ4MzQyMSwiZXhwIjoyMDk4ODQzNDIxfQ.Tq8c8y00zU84320aKFGF5n453NyTgLM2-dNCIoJJZNQ" alt="Промывание носа">
+        </div>
+        <div class="card-body">
+          <span class="card-icon" style="color:var(--green)">💧</span>
+          <p>1/2 ч.л. соли и 1/2 ч.л. соды на 250 мл тёплой воды. Промывать нос 1–2 раза в день.</p>
+        </div>
+      </article>
+
+      <article class="card reveal d2">
+        <div class="card-head c-orange">
+          <span class="card-num">2</span>
+          <h3>Сок каланхоэ</h3>
+        </div>
+        <div class="card-img">
+          <img src="https://rrzvgzjttmyseqsmmyvn.supabase.co/storage/v1/object/sign/attachments/941a914d-ae13-44df-8f11-8d512d6c51bf/canvas-images/1783483421567-7anfxq.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xMjY1MWQ4My04ODE0LTQ3NzMtOGRlNS00MzliNDBkODY2NmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdHRhY2htZW50cy85NDFhOTE0ZC1hZTEzLTQ0ZGYtOGYxMS04ZDUxMmQ2YzUxYmYvY2FudmFzLWltYWdlcy8xNzgzNDgzNDIxNTY3LTdhbmZ4cS53ZWJwIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4MzQ4MzQyMiwiZXhwIjoyMDk4ODQzNDIyfQ.sbsD4inOPbnG91aegRGEWUyEw56ZfCCatC-n-XgtYEg" alt="Сок каланхоэ">
+        </div>
+        <div class="card-body">
+          <span class="card-icon" style="color:var(--orange)">🌱</span>
+          <p>Закапывать по 2–3 капли в каждый носовой ход 3–4 раза в день.</p>
+        </div>
+      </article>
+
+      <article class="card reveal d3">
+        <div class="card-head c-red">
+          <span class="card-num">3</span>
+          <h3>Свекольный сок</h3>
+        </div>
+        <div class="card-img">
+          <img src="https://rrzvgzjttmyseqsmmyvn.supabase.co/storage/v1/object/sign/attachments/941a914d-ae13-44df-8f11-8d512d6c51bf/canvas-images/1783483422827-qshs65.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xMjY1MWQ4My04ODE0LTQ3NzMtOGRlNS00MzliNDBkODY2NmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdHRhY2htZW50cy85NDFhOTE0ZC1hZTEzLTQ0ZGYtOGYxMS04ZDUxMmQ2YzUxYmYvY2FudmFzLWltYWdlcy8xNzgzNDgzNDIyODI3LXFzaHM2NS53ZWJwIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4MzQ4MzQyMywiZXhwIjoyMDk4ODQzNDIzfQ.na3o2_jbCjZiSdqP5OrJhc3MMajrCrBgzK62BVgbmvs" alt="Свекольный сок">
+        </div>
+        <div class="card-body">
+          <span class="card-icon" style="color:var(--red)">🍠</span>
+          <p>Свежий свекольный сок разбавить водой 1:1. Закапывать по 2 капли 3–4 раза в день.</p>
+        </div>
+      </article>
+
+      <article class="card reveal d1">
+        <div class="card-head c-blue">
+          <span class="card-num">4</span>
+          <h3>Ингаляции с эвкалиптом</h3>
+        </div>
+        <div class="card-img">
+          <img src="https://rrzvgzjttmyseqsmmyvn.supabase.co/storage/v1/object/sign/attachments/941a914d-ae13-44df-8f11-8d512d6c51bf/canvas-images/1783483422867-wjrnw1.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xMjY1MWQ4My04ODE0LTQ3NzMtOGRlNS00MzliNDBkODY2NmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdHRhY2htZW50cy85NDFhOTE0ZC1hZTEzLTQ0ZGYtOGYxMS04ZDUxMmQ2YzUxYmYvY2FudmFzLWltYWdlcy8xNzgzNDgzNDIyODY3LXdqcm53MS53ZWJwIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4MzQ4MzQyMywiZXhwIjoyMDk4ODQzNDIzfQ.iZ2cw9xMhMWAIN-Wa2r0ptfj-9vw7_O5LrLZMrLk0Pg" alt="Ингаляции с эвкалиптом">
+        </div>
+        <div class="card-body">
+          <span class="card-icon" style="color:var(--blue)">♨️</span>
+          <p>Добавить 2–3 капли масла эвкалипта в горячую воду. Дышать паром 10–15 минут.</p>
+        </div>
+      </article>
+
+      <article class="card reveal d2">
+        <div class="card-head c-purple">
+          <span class="card-num">5</span>
+          <h3>Ментоловое масло</h3>
+        </div>
+        <div class="card-img">
+          <img src="https://rrzvgzjttmyseqsmmyvn.supabase.co/storage/v1/object/sign/attachments/941a914d-ae13-44df-8f11-8d512d6c51bf/canvas-images/1783483422988-ftcya5.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xMjY1MWQ4My04ODE0LTQ3NzMtOGRlNS00MzliNDBkODY2NmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdHRhY2htZW50cy85NDFhOTE0ZC1hZTEzLTQ0ZGYtOGYxMS04ZDUxMmQ2YzUxYmYvY2FudmFzLWltYWdlcy8xNzgzNDgzNDIyOTg4LWZ0Y3lhNS53ZWJwIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4MzQ4MzQyMywiZXhwIjoyMDk4ODQzNDIzfQ.IIrJrEBP3N626wPFyATwVocm3f7gaqUj5Qy87PSXxZE" alt="Ментоловое масло">
+        </div>
+        <div class="card-body">
+          <span class="card-icon" style="color:var(--purple)">🍃</span>
+          <p>Нанести немного масла на крылья носа и переносицу. Дышать станет легче.</p>
+        </div>
+      </article>
+
+      <article class="card reveal d3">
+        <div class="card-head c-teal">
+          <span class="card-num">6</span>
+          <h3>Прогревание пазух варёным яйцом</h3>
+        </div>
+        <div class="card-img">
+          <img src="https://rrzvgzjttmyseqsmmyvn.supabase.co/storage/v1/object/sign/attachments/941a914d-ae13-44df-8f11-8d512d6c51bf/canvas-images/1783483423720-451a5o.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xMjY1MWQ4My04ODE0LTQ3NzMtOGRlNS00MzliNDBkODY2NmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdHRhY2htZW50cy85NDFhOTE0ZC1hZTEzLTQ0ZGYtOGYxMS04ZDUxMmQ2YzUxYmYvY2FudmFzLWltYWdlcy8xNzgzNDgzNDIzNzIwLTQ1MWE1by53ZWJwIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4MzQ4MzQyNCwiZXhwIjoyMDk4ODQzNDI0fQ.2m10G9PKjZZL33nV9lgO26U3wj0Ow1iVV4OYkYLCXRA" alt="Прогревание варёным яйцом">
+        </div>
+        <div class="card-body">
+          <span class="card-icon" style="color:var(--teal)">🥚</span>
+          <p>Обернуть тёплое варёное яйцо тканью и прикладывать к пазухам на 10–15 минут.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== BENEFITS ===== -->
+<section class="benefits" id="benefits">
+  <div class="wrap">
+    <div class="benefits-box reveal">
+      <div class="lead">
+        <h2>Натурально, доступно, эффективно</h2>
+        <p>Народные средства помогают быстро облегчить симптомы насморка и заложенности носа, укрепляют иммунитет и заботятся о здоровье всей семьи.</p>
+      </div>
+      <div class="benefit reveal d1">
+        <div class="b-icon">🌿</div>
+        <h4 class="g">Натуральный состав</h4>
+        <p>Только природные ингредиенты</p>
+      </div>
+      <div class="benefit reveal d2">
+        <div class="b-icon">✅</div>
+        <h4 class="gr">Безопасно</h4>
+        <p>Подходит для взрослых и детей*</p>
+      </div>
+      <div class="benefit reveal d3">
+        <div class="b-icon">❤️</div>
+        <h4 class="r">Проверено временем</h4>
+        <p>Используется поколениями в семьях</p>
+      </div>
+    </div>
+    <p class="disclaimer reveal">*Перед применением рекомендуется проконсультироваться со специалистом.</p>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta" id="cta">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <span class="shield">🛡️</span>
+      <p>Проверено временем. Работает на практике!</p>
+      <a href="#remedies" class="cta-btn">🌿 Забота о здоровье →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer id="footer">
+  <div class="wrap">
+    <div class="footer-grid reveal">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span class="logo-badge"><img src="https://rrzvgzjttmyseqsmmyvn.supabase.co/storage/v1/object/sign/attachments/96bf55b9-44ce-4c2b-a96a-a3baeb904042/canvas/g01k4g1q/3j8sanwl.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xMjY1MWQ4My04ODE0LTQ3NzMtOGRlNS00MzliNDBkODY2NmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdHRhY2htZW50cy85NmJmNTViOS00NGNlLTRjMmItYTk2YS1hM2JhZWI5MDQwNDIvY2FudmFzL2cwMWs0ZzFxLzNqOHNhbndsLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODM0ODcxMzksImV4cCI6MjA5ODg0NzEzOX0.qDnjsi0FgUDKfCpjL_EQvsEkNfLO7qtsOkypb0r7xhQ" alt="Логотип Спецмазь"></span>
+          <span class="logo-name">Спецмазь</span>
+        </a>
+        <p>Народные средства для здоровья в домашних условиях</p>
+      </div>
+      <nav class="footer-menu">
+        <a href="#">Главная</a>
+        <a href="#remedies">Средства</a>
+        <a href="#benefits">О нас</a>
+        <a href="#remedies">Советы</a>
+        <a href="#footer">Отзывы</a>
+      </nav>
+      <div>
+        <p class="socials-title">Мы в соцсетях</p>
+        <div class="socials">
+          <a href="#" class="soc vk" aria-label="ВКонтакте">VK</a>
+          <a href="#" class="soc ok" aria-label="Одноклассники">OK</a>
+          <a href="#" class="soc yt" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+    </div>
+    <p class="copyright">© 2026 СПЕЦМАЗЬ. Все права защищены.</p>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('menu');
+  burger.addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+  // Scroll-reveal animations
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
